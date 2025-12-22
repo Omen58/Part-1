@@ -1,0 +1,11 @@
+CORS Nedir?
+    Zararlı javascript kodu çalıştırmadır aslında.
+
+    Ör:
+        Bir sitede origin'e yanıt veriyorsa (https://miro.medium.com/v2/resize:fit:720/format:webp/1*c9qYi8GMvTFW5jYWii9jyg.png) kendi web sitemize
+        yönlendirme yaptırırız ve 200 gelirse kendi sitemize zararlı javascript kodu enjekte ederek admin veya Kullanıcının apisini çalabiliriz ve böylece erişim yapabiliriz.
+        Örnek javascript kodu (https://miro.medium.com/v2/resize:fit:720/format:webp/1*R-ao9aDIzeZqs6Wr8fCHyg.png)
+        Örnek api düşürülmüş kod (https://miro.medium.com/v2/resize:fit:720/format:webp/1*ueY3c0Rg-XtyslvsZ-60MQ.png)
+Kaynakça:
+    https://haktanemik.medium.com/cors-nedir-8a69c65c3d92
+    https://ariarif.medium.com/portswigger-web-security-cors-cross-origin-resource-sharing-lab-%C3%A7%C3%B6z%C3%BCmleri%CC%87-6974a9de3174

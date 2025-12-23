@@ -1,2 +1,2 @@
 # Part-1
-Cross Site Scripting (XSS) , Clickjacking , Host Header Injection , CRLF , Debug Mod Hataları , Cross Site Tracing
+Cros Web ve Exploit , Clickjacking , Host Header Injection , CRLF , Debug Mod Hataları , Cross Site Tracing

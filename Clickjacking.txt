@@ -1,2 +1,6 @@
 Clickjacking(Tıkırdama):
-    
+    Bir site iframe yükleyebilirsek o siteye zaten istediğimiz yönlendirme yaparız
+ÖR:
+    Ücretsiz iphone butonu koydun sitene ama o buton iframe buton ve butona iframe açık olan sitede yüklersek o sitede hesabı sil butonuna yönlendirirsek hesap silinir
+
+Sonuç : Bu kadar kolay bir açık ama etkili

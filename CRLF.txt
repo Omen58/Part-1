@@ -1,5 +1,5 @@
 CRLF enjeksiyonu nedir?
-    CRLF enjeksiyonu kötü niyetli bir bilgisayar korsanının, bir web uygulamasının çalışma şeklini değiştirmek veya yöneticisinin kafasını karıştırmak için satır başı (CR) ve satır akışı (LF) karakterleri eklemesine olanak tanıyan bir güvenlik açığıdır. CRLF enjeksiyonları için iki ana kötü amaçlı kullanım vardır: og poisoning (also called log injection, log splitting, or log forging) and HTTP yanıt bölme.
+    CRLF enjeksiyonu kötü niyetli bir bilgisayar korsanının, bir web uygulamasının çalışma şeklini değiştirmek veya yöneticisinin kafasını karıştırmak için satır başı (CR) ve satır akışı (LF) karakterleri eklemesine olanak tanıyan bir güvenlik açığıdır. CRLF enjeksiyonları için iki ana kötü amaçlı kullanım vardır: log poisoning (also called log injection, log splitting, or log forging) and HTTP yanıt bölme.
     Saldırganlar CRLF enjeksiyonlarını kullanabilirler tırmandırmak başta diğer güvenlik açıklarına siteler arası komut dosyası çalıştırma (XSS). CRLF enjeksiyonları web uygulamalarında e-posta davranışını etkilemek için de kullanılabilir – buna denir e-posta enjeksiyonu (e-posta başlığı enjeksiyonu).
 
 HTTP Yanıt Bölme Nedir
@@ -77,4 +77,5 @@ Kaynak:
     https://www.invicti.com/learn/crlf-injection
     https://www.acunetix.com/websitesecurity/crlf-injection/
     https://owasp.org/www-community/vulnerabilities/CRLF_Injection
+
     https://www.geeksforgeeks.org/linux-unix/crlf-injection-attack/

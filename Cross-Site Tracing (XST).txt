@@ -1,28 +1,50 @@
-Çapraz Site İzleme (XST) nedir?
-    Web güvenliği alanında, Çapraz Site İzleme (XST), hassas verilerin gizliliğini tehlikeye atabilecek güçlü ancak sıklıkla göz ardı edilen bir güvenlik açığı oluşturmaktadır. Kötü şöhretli kardeşi Çapraz Site Komut Dosyası Çalıştırma (XSS) kadar yaygın olarak bilinmese de , XST web uygulamaları ve kullanıcıları için önemli bir tehdit oluşturmaktadır.
-    Web güvenliği açıklarıyla ilgili tartışmalarda XSS öne çıksa da, XST de hafife alınmamalıdır. Hassas verileri çalmak için HTTP TRACE yöntemini kullanan XST, web uygulamaları ve kullanıcıları için önemli bir tehdit oluşturmaktadır. Tanı amaçlı kullanılan bu yöntem, bir istemcinin sunucuya bir istek göndermesine ve sunucunun yanıtında bu isteğin bir kopyasını almasına olanak tanır. TRACE, HTTP protokolünün meşru bir parçası olsa da, kötüye kullanımı kötü amaçlı faaliyetlere kapı açabilir. TRACE'i devre dışı bırakmak ve sağlam girdi doğrulaması uygulamak da dahil olmak üzere önleyici tedbirler, XST'ye karşı korunmada çok önemlidir.
-Siteler Arası Komut Dosyası Çalıştırma (XSS) nedir?
-    https://github.com/Omen58/Part-1/blob/main/Cross%20Site%20Scripting%20(XSS).txt
-XST—TRACE Veri Hırsızlığı İçin Nasıl İstismar Edilebilir?
-    XST'nin çalışma prensibi, bir web sunucusunu kandırarak hassas bilgileri, özellikle çerezleri, saldırganın kontrolündeki bir alana geri göndermesini sağlamaktır. Bu istismar genellikle şu adımları izler:
-        Enjeksiyon Noktası Tespiti: Bir saldırgan, XST'ye karşı savunmasız bir web uygulamasını tespit eder. Bu, dikkatli bir keşif çalışması veya kullanıcı girdisini doğrudan HTTP yanıtlarına yansıtan bir giriş alanının keşfi yoluyla olabilir.
-        Kötü Amaçlı İstek: Uygun bir enjeksiyon noktası bulunduğunda, saldırgan savunmasız uygulamaya bir HTTP TRACE isteği gönderir. Bu istek, oturum belirteçleri ve diğer hassas veriler de dahil olmak üzere çerezlerde bulunan tüm bilgileri geri yansıtacak şekilde tasarlanmıştır.
-        Veri Sızdırma: Saldırgan, alıcı tarafta oturarak iletilen verileri toplar; bu veriler oturum kimliklerini veya kimlik doğrulama belirteçlerini içerebilir. Çalınan bu bilgiler, kullanıcı hesaplarına ve hassas kaynaklara yetkisiz erişim sağlayabilir.
-        Sunucu Yanıtı: Web sunucusu kötü amaçlı TRACE isteğini işler ve farkında olmadan saldırganın çerezlerinin içeriğini HTTP yanıtında yansıtır.
-XST ile XSS arasındaki fark nedir?
-    XTS ve XSS arasındaki temel farklar şunlardır:
-        Saldırı Vektörü:
-            - XSS: Kötü amaçlı komut dosyalarının web uygulamalarına enjekte edilmesini ve kullanıcıların tarayıcılarını hedef almasını içerir.
-            - XST: HTTP TRACE yöntemini kullanarak web kullanıcılarından hassas bilgileri, özellikle çerezleri çalar.
-        İstismar Yöntemi:
-            - XSS: Kurbanın tarayıcısında çalışan komut dosyalarının enjekte edilmesine dayanır.
-            - XST: Hassas verileri saldırgana geri yansıtmak için sunucu tarafı bir mekanizma olan HTTP TRACE yöntemini istismar eder.
-        Sunucu Katılımı:
-            - XSS: Kurbanın tarayıcısının kötü amaçlı komut dosyalarını çalıştırmasını içerir; sunucunun rolü, tehlikeye atılmış içeriği sunmaktır.
-            - XST: Web sunucusunun verileri saldırgana geri yansıtmasını içerir, istemci tarafında minimum düzeyde katılım vardır. 
-        Amaç:
-            - XSS: Kullanıcıların tarayıcılarında kötü amaçlı komut dosyaları çalıştırarak verilerini veya oturumlarını tehlikeye atmayı hedefler.
-            - XST: Web sunucusunu kandırarak kullanıcı çerezlerini ve hassas bilgilerini çalmayı ve bu verileri saldırgana geri yansıtmasını sağlamayı hedefler.
+Çapraz Site İzleme
+  Tanım
+    Çapraz Site İzleme (XST) saldırısı, Çapraz Site Komut Dosyası Çalıştırma (XSS) ve TRACE veya TRACK HTTP yöntemlerinin kullanımını içerir . RFC 2616'ya göre , “TRACE, istemcinin istek zincirinin diğer ucunda ne alındığını görmesine ve bu verileri test veya teşhis bilgileri için kullanmasına olanak tanır.” TRACK yöntemi de aynı şekilde çalışır ancak Microsoft'un IIS web sunucusuna özgüdür. XST, çerezde “ HttpOnly ” bayrağı ayarlanmış olsa veya kullanıcının Yetkilendirme başlığını ifşa etse bile , Çapraz Site Komut Dosyası Çalıştırma (XSS) yoluyla kullanıcının çerezlerini çalmak için bir yöntem olarak kullanılabilir.
+    Görünüşte zararsız olan TRACE yöntemi, bazı senaryolarda meşru kullanıcıların kimlik bilgilerini çalmak için başarıyla kullanılabilir. Bu saldırı tekniği, 2003 yılında Jeremiah Grossman tarafından, Microsoft'un Internet Explorer 6 SP1'de çerezlere JavaScript tarafından erişimi engellemek için tanıttığı HttpOnly etiketini atlatma girişiminde keşfedilmiştir. Aslında, Çapraz Site Komut Dosyası Çalıştırma (XSS) saldırılarında en sık tekrarlanan saldırı modellerinden biri, document.cookie nesnesine erişmek ve onu saldırgan tarafından kontrol edilen bir web sunucusuna göndermektir, böylece kurbanın oturumunu ele geçirebilirler. Bir çerezi HttpOnly olarak etiketlemek , JavaScript'in ona erişmesini engeller ve üçüncü bir tarafa gönderilmesini önler. Ancak, TRACE yöntemi bu korumayı atlatmak ve bu senaryoda bile çereze erişmek için kullanılabilir.
+    Modern tarayıcılar artık JavaScript aracılığıyla TRACE isteklerinin yapılmasını engelliyor, ancak Java gibi yöntemler kullanılarak tarayıcılarla TRACE istekleri göndermenin başka yolları da keşfedildi.
+
+   Örnekler
+    cURL'ü komut satırından kullanarak, TRACE özelliği etkinleştirilmiş localhost'taki bir web sunucusuna TRACE isteği gönderme örneği. Web sunucusunun kendisine gönderilen isteğe nasıl yanıt verdiğine dikkat edin.
+
+$ curl -X TRACE 127.0.0.1
+TRACE / HTTP/1.1
+User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+Host: 127.0.0.1
+Accept: */*
+  Bu örnekte, istekle birlikte bir Çerez başlığı gönderdiğimizi ve bunun web sunucusunun yanıtında da yer aldığını fark edin.
+
+$ curl -X TRACE -H "Cookie: name=value" 127.0.0.1
+TRACE / HTTP/1.1
+User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+Host: 127.0.0.1
+Accept: */*
+Cookie: name=value
+  Bu örnekte TRACE yöntemi devre dışı bırakılmıştır; gönderdiğimiz istek yerine hata aldığımıza dikkat edin.
+
+$ curl -X TRACE 127.0.0.1
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>405 Method Not Allowed</title>
+</head><body>
+<h1>Method Not Allowed</h1>
+<p>The requested method TRACE is not allowed for the URL /.</p>
+</body></html>
+  Örnek JavaScript XMLHttpRequest TRACE isteği. Firefox 19.0.2'de çalışmaz ve "Geçersiz Değer" hatası döndürür. Google Chrome 25.0.1364.172'de çalışmaz ve "Yakalanmayan Hata: SecurityError: DOM İstisnası 18" hatası döndürür. Bunun nedeni, modern tarayıcıların XST'yi azaltmaya yardımcı olmak için XMLHttpRequest'teki TRACE yöntemini engellemesidir.
+
+<script>
+  var xmlhttp = new XMLHttpRequest();
+  var url = 'http://127.0.0.1/';
+
+  xmlhttp.withCredentials = true; // send cookie header
+  xmlhttp.open('TRACE', url, false);
+  xmlhttp.send();
+</script>
+İyileştirme
+  Apache
+    Apache 1.3.34, 2.0.55 ve sonraki sürümlerinde, ana yapılandırma dosyasında TraceEnable yönergesini "off" olarak ayarlayın ve ardından Apache'yi yeniden başlatın. Daha fazla bilgi için TraceEnable bölümüne bakın.
+    TraceEnable off
+
 XST'nin Riskleri
     XST saldırıları çeşitli açılardan çok zararlı ve sinsi olma potansiyeline sahiptir
         Veri Hırsızlığı - Çerezler ve Oturum Ele Geçirme
@@ -42,5 +64,5 @@ XST Güvenlik Açıklarına Karşı Nasıl Korunulur?
     Düzenli Güvenlik Güncellemeleri
     İzleme ve Kayıt Tutma
 
-Radware, XST tehditlerini azaltmaya nasıl yardımcı oluyor?
-    Radware'in bulut ve şirket içi Web Uygulama Güvenlik Duvarı (WAF), DDoS koruması ve uygulama dağıtım çözümleri de dahil olmak üzere güvenlik çözümleri, XST saldırıları da dahil olmak üzere çeşitli tehditlere karşı web uygulamalarını korumada çok önemli bir rol oynamaktadır.
+Kaynak:
+  https://owasp.org/www-community/attacks/Cross_Site_Tracing

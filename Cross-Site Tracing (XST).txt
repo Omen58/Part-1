@@ -1,0 +1,46 @@
+Çapraz Site İzleme (XST) nedir?
+    Web güvenliği alanında, Çapraz Site İzleme (XST), hassas verilerin gizliliğini tehlikeye atabilecek güçlü ancak sıklıkla göz ardı edilen bir güvenlik açığı oluşturmaktadır. Kötü şöhretli kardeşi Çapraz Site Komut Dosyası Çalıştırma (XSS) kadar yaygın olarak bilinmese de , XST web uygulamaları ve kullanıcıları için önemli bir tehdit oluşturmaktadır.
+    Web güvenliği açıklarıyla ilgili tartışmalarda XSS öne çıksa da, XST de hafife alınmamalıdır. Hassas verileri çalmak için HTTP TRACE yöntemini kullanan XST, web uygulamaları ve kullanıcıları için önemli bir tehdit oluşturmaktadır. Tanı amaçlı kullanılan bu yöntem, bir istemcinin sunucuya bir istek göndermesine ve sunucunun yanıtında bu isteğin bir kopyasını almasına olanak tanır. TRACE, HTTP protokolünün meşru bir parçası olsa da, kötüye kullanımı kötü amaçlı faaliyetlere kapı açabilir. TRACE'i devre dışı bırakmak ve sağlam girdi doğrulaması uygulamak da dahil olmak üzere önleyici tedbirler, XST'ye karşı korunmada çok önemlidir.
+Siteler Arası Komut Dosyası Çalıştırma (XSS) nedir?
+    https://github.com/Omen58/Part-1/blob/main/Cross%20Site%20Scripting%20(XSS).txt
+XST—TRACE Veri Hırsızlığı İçin Nasıl İstismar Edilebilir?
+    XST'nin çalışma prensibi, bir web sunucusunu kandırarak hassas bilgileri, özellikle çerezleri, saldırganın kontrolündeki bir alana geri göndermesini sağlamaktır. Bu istismar genellikle şu adımları izler:
+        Enjeksiyon Noktası Tespiti: Bir saldırgan, XST'ye karşı savunmasız bir web uygulamasını tespit eder. Bu, dikkatli bir keşif çalışması veya kullanıcı girdisini doğrudan HTTP yanıtlarına yansıtan bir giriş alanının keşfi yoluyla olabilir.
+        Kötü Amaçlı İstek: Uygun bir enjeksiyon noktası bulunduğunda, saldırgan savunmasız uygulamaya bir HTTP TRACE isteği gönderir. Bu istek, oturum belirteçleri ve diğer hassas veriler de dahil olmak üzere çerezlerde bulunan tüm bilgileri geri yansıtacak şekilde tasarlanmıştır.
+        Veri Sızdırma: Saldırgan, alıcı tarafta oturarak iletilen verileri toplar; bu veriler oturum kimliklerini veya kimlik doğrulama belirteçlerini içerebilir. Çalınan bu bilgiler, kullanıcı hesaplarına ve hassas kaynaklara yetkisiz erişim sağlayabilir.
+        Sunucu Yanıtı: Web sunucusu kötü amaçlı TRACE isteğini işler ve farkında olmadan saldırganın çerezlerinin içeriğini HTTP yanıtında yansıtır.
+XST ile XSS arasındaki fark nedir?
+    XTS ve XSS arasındaki temel farklar şunlardır:
+        Saldırı Vektörü:
+            - XSS: Kötü amaçlı komut dosyalarının web uygulamalarına enjekte edilmesini ve kullanıcıların tarayıcılarını hedef almasını içerir.
+            - XST: HTTP TRACE yöntemini kullanarak web kullanıcılarından hassas bilgileri, özellikle çerezleri çalar.
+        İstismar Yöntemi:
+            - XSS: Kurbanın tarayıcısında çalışan komut dosyalarının enjekte edilmesine dayanır.
+            - XST: Hassas verileri saldırgana geri yansıtmak için sunucu tarafı bir mekanizma olan HTTP TRACE yöntemini istismar eder.
+        Sunucu Katılımı:
+            - XSS: Kurbanın tarayıcısının kötü amaçlı komut dosyalarını çalıştırmasını içerir; sunucunun rolü, tehlikeye atılmış içeriği sunmaktır.
+            - XST: Web sunucusunun verileri saldırgana geri yansıtmasını içerir, istemci tarafında minimum düzeyde katılım vardır. 
+        Amaç:
+            - XSS: Kullanıcıların tarayıcılarında kötü amaçlı komut dosyaları çalıştırarak verilerini veya oturumlarını tehlikeye atmayı hedefler.
+            - XST: Web sunucusunu kandırarak kullanıcı çerezlerini ve hassas bilgilerini çalmayı ve bu verileri saldırgana geri yansıtmasını sağlamayı hedefler.
+XST'nin Riskleri
+    XST saldırıları çeşitli açılardan çok zararlı ve sinsi olma potansiyeline sahiptir
+        Veri Hırsızlığı - Çerezler ve Oturum Ele Geçirme
+        Yetkisiz İşlemler:Hesap Ele Geçirme
+XST Güvenlik Açıklarına Karşı Nasıl Korunulur?
+    TRACE Yöntemini Devre Dışı BırakınGiriş Doğrulama ve Temizleme
+    Giriş Doğrulama ve TemizlemeWeb Uygulama Güvenlik Duvarı (WAF)
+    Çıktı Kodlaması
+    Güvenlik Yama Yönetimi
+    Düzenli Güvenlik Denetimleri
+    Güvenlik Başlıkları
+    Hata Yönetimi
+    Güvenli Çerezler
+    Erişim Kontrolleri
+    Olay Müdahale Planı
+    Geliştiricileri ve Personeli Eğitin
+    Düzenli Güvenlik Güncellemeleri
+    İzleme ve Kayıt Tutma
+
+Radware, XST tehditlerini azaltmaya nasıl yardımcı oluyor?
+    Radware'in bulut ve şirket içi Web Uygulama Güvenlik Duvarı (WAF), DDoS koruması ve uygulama dağıtım çözümleri de dahil olmak üzere güvenlik çözümleri, XST saldırıları da dahil olmak üzere çeşitli tehditlere karşı web uygulamalarını korumada çok önemli bir rol oynamaktadır.
